@@ -23,4 +23,18 @@ let otherBookSummary = getSummary(otherBook)
 console.log(bookSummary.pageCountSummary)
 
 // Challenge Area
-// Create function - take fahrenheit in - return object with all three (converted celsius and kelvin values)
+// Create function - take fahrenheit in - 
+// return object with all three (converted celsius and kelvin values)
+console.log('\n****Challenge Area****\n')
+
+let convertFahrenheit = function (fahrenheit) {
+    return {
+        fahrenheit: fahrenheit,
+        kelvin: (fahrenheit + 459.67) * (5 / 9),
+        celsius: (fahrenheit - 32) * (5 / 9)
+    }
+}
+
+let temps = convertFahrenheit(74)
+console.log(temps)
+console.log(temps.celsius)
