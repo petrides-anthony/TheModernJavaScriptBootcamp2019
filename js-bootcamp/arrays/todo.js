@@ -11,5 +11,20 @@ todos.push('Buy mechanical keyboard')
 // Remove the first item from the list
 todos.shift()
 
-console.log(`you have ${todos.length} todos in your list`)
-console.log(todos)
+console.log(`You have ${todos.length} todos!\n--------------------`)
+
+// Challenge:
+// 1. The first item
+// 2. The second item
+// etc...
+
+todos.forEach(function (item, index) {
+    console.log(`${index + 1}. ${item}`)
+})
+
+console.log('\n***Challenge***\n')
+// Do same as above with a for statement
+
+for(let count = 0; count < todos.length; count++) {
+    console.log(`${count + 1}. ${todos[count]}`)
+}
