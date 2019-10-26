@@ -1,30 +1,32 @@
-// Create an array with five todos
-// Print Message: You have x todos
-// Print the first and second to last items -? print out: Todo: walk the dog
+const todos = [{
+    text: 'Book New Years Trip',
+    completed: false
+}, {
+    text: 'Finish Arrays Section',
+    completed: true
+}, {
+    text: 'Pet Project Planning',
+    completed: false
+}, {
+    text: 'Reach Lv 20 in WoW',
+    completed: true
+}, {
+    text: 'Finish Docker Swarm',
+    completed: true
+}]
 
-const todos = ['Book New Years Trip', 'Finish Arrays Section', 'Pet Project Planning', 'Reach Lv 20 in WoW', 'Finish Docker Swarm']
+// 1. convert array of strings to array of objects -> text & completed properties [DONE]
+// 2. Create function to remove a todo by text value
 
-// Delete the 3rd item
-todos.splice(2, 1)
-// Add a new item onto the end
-todos.push('Buy mechanical keyboard')
-// Remove the first item from the list
-todos.shift()
+const deleteTodo = function (todos, todoText) {
+    const index = todos.findIndex(function (todo){
+        return todo.text.toLowerCase() === todoText.toLowerCase()
+    })
 
-console.log(`You have ${todos.length} todos!\n--------------------`)
-
-// Challenge:
-// 1. The first item
-// 2. The second item
-// etc...
-
-todos.forEach(function (item, index) {
-    console.log(`${index + 1}. ${item}`)
-})
-
-console.log('\n***Challenge***\n')
-// Do same as above with a for statement
-
-for(let count = 0; count < todos.length; count++) {
-    console.log(`${count + 1}. ${todos[count]}`)
+    if (index > -1) {
+        todos.splice(index, 1)
+    }
 }
+
+deleteTodo(todos, 'Book new Years trip')
+console.log(todos)
