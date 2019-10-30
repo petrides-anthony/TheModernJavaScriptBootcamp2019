@@ -1,14 +1,24 @@
-// DOM - Document Object Model
+const notes = [{
+    title: 'My next trip',
+    body: 'I would like to go to away for New Years'
+}, {
+    title: 'Habbits to work on',
+    body: 'Exercise. Eating a bit better'
+}, {
+    title: 'Office modifications',
+    body: 'Get a new keyboard'
+}]
 
-// Query and remove first only
-// const p = document.querySelector('p')
-// p.remove()
+document.querySelector('#create-note').addEventListener('click', function (e) {
+    e.target.textContent = 'The button was clicked'
+})
 
-// Query all and remove
-const ps = document.querySelectorAll('p')
+document.querySelector('#remove-all').addEventListener('click', function(e) {
+    document.querySelectorAll('.note').forEach(function(note){
+        note.remove()
+    })
+})
 
-ps.forEach(function (p) {
-    p.textContent = '************'
-    // console.log((p.textContent))
-    // p.remove()
+document.querySelector('#search-text').addEventListener('input', function(e) {
+    console.log(e.target.value)
 })
