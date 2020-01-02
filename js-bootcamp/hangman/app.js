@@ -13,7 +13,7 @@ window.addEventListener('keypress', (e) => {
 
 })
 
-getPuzzle((error, puzzle) => {
+getPuzzle("3", (error, puzzle) => {
     if (error) {
         console.log(`Error: ${error}`)
     } else {
@@ -21,22 +21,10 @@ getPuzzle((error, puzzle) => {
     }
 })
 
-
-// Making an HTTP request
-
-// // New API Request for getting Country name based on given Country Code
-// const countryCode = "MX"
-// const countryApiRequest = new XMLHttpRequest()
-
-// countryApiRequest.addEventListener('readystatechange', (e) => {
-//     if (e.target.readyState === 4 && e.target.status === 200) {
-//         const data = JSON.parse(e.target.responseText)
-//         const country = data.find((country) => country.alpha2Code === countryCode)
-//         console.log(country.name)
-//     } else if (e.target.readyState === 4) {
-//         console.log('An error has taken place')
-//     }
-// })
-
-// countryApiRequest.open('GET' , 'http://restcountries.eu/rest/v2/all')
-// countryApiRequest.send()
+getCountry('GB', (error, country) => {
+    if (error) {
+        console.log
+    } else {
+        console.log(`Country name: ${country.name}`)
+    }
+})
