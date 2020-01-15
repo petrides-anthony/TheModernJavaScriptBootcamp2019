@@ -15,12 +15,14 @@ window.addEventListener('keypress', (e) => {
 
 getPuzzle('2').then((puzzle) => {
     console.log(puzzle)
-}, (err) => {
+}).catch((err) => {
     console.log(`Error: ${err}`)
 })
 
-getCountry('GB').then((country) => {
+getLocation().then((location) => {
+    return getCountry(location.country)
+}).then((country) => {
     console.log(country.name)
-}, (err) => {
+}).catch((err) => {
     console.log(`Error: ${err}`)
 })

@@ -43,11 +43,11 @@ getDataPromise(2).then((data) => {
 // Correct and uncomplex way to chain promise data
 
 // data here is 10*2 = 20
-getDataPromise('10').then((data) => {
+getDataPromise(10).then((data) => {
     return getDataPromise(data)
     // data here is 20*2 = 40
 }).then((data) => {
-    return getDataPromise(data)
+    return 'this is some test data'
         // data here is 40*2 = 80
 }).then((data) => {
     console.log(data)
