@@ -12,16 +12,15 @@ document.querySelector('#search-text').addEventListener('input', (e) => {
 })
 
 document.querySelector('#new-todo').addEventListener('submit', (e) => {
-    //const text = e.target.elements.text.value.trim()
+    const text = e.target.elements.text;
     e.preventDefault()
 
-    if (e.target.elements.newTodo.value.trim().length > 0) {
-        createTodo(e.target.elements.newTodo.value)
+    if (text.value.trim().length > 0) {
+        createTodo(text.value)
         renderTodos()
-        e.target.elements.newTodo.value = ''
+        text.value = ''
     }
 })
-
 
 document.querySelector('#hide-completed').addEventListener('change', (e) => {
     setFilters({
