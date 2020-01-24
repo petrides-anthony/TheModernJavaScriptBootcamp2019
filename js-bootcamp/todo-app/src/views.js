@@ -1,23 +1,14 @@
-// Read existing todos from localStorage
-const getSavedTodos = () => {
-    const todosJSON = localStorage.getItem('todos')
+import { getTodos, toggleTodo, removeTodo } from './todos'
+import { getFilters } from './filters'
 
-    try {
-        return todosJSON ? JSON.parse(todosJSON) : []
-    } catch (e) {
-        return []
-    }
-}
-
-// Save todos to localStorage
-const saveTodos = (todos) => {
-    localStorage.setItem('todos', JSON.stringify(todos))
-}
-
+// renderTodos
+// Arguments: none
+// Return value: none
 // Render application todos based on filters
-const renderTodos = (todos, filters) => {
+const renderTodos = () => {
     const todoEl = document.querySelector('#todos')
-    const filteredTodos = todos.filter((todo) => {
+    const filters = getFilters()
+    const filteredTodos = getTodos().filter((todo) => {
         const searchTextMatch = todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
         const hideCompletedMatch = !filters.hideCompleted || !todo.completed
         
@@ -42,24 +33,9 @@ const renderTodos = (todos, filters) => {
 
 }
 
-// Remove Todo from the list by id
-const removeTodo = (id) => {
-    const todoIndex = todos.findIndex((todo) => todo.id === id)
-
-    if (todoIndex > -1) {
-        todos.splice(todoIndex, 1)
-    }
-}
-
-// Toggle the completed value for a given todo
-const toggleTodo = (id) => {
-    const todo = todos.find((todo) => todo.id === id)
-
-    if (todo) {
-        todo.completed = !todo.completed
-    }
-}
-
+// generateTodoDOM
+// Arguments: todo
+// Return value: the todo element
 // Get the DOM elements for an individual note
 const generateTodoDOM = (todo) => {
     const todoEl = document.createElement('label')
@@ -75,8 +51,7 @@ const generateTodoDOM = (todo) => {
     containerEl.appendChild(checkbox)
     checkbox.addEventListener('change', () => {
         toggleTodo(todo.id)
-        saveTodos(todos)
-        renderTodos(todos, filters)
+        renderTodos()
     })
 
     // Setup the todo text
@@ -94,13 +69,15 @@ const generateTodoDOM = (todo) => {
     todoEl.appendChild(removeButton)
     removeButton.addEventListener('click', () => {
         removeTodo(todo.id)
-        saveTodos(todos)
-        renderTodos(todos, filters)
+        renderTodos()
     })
 
     return todoEl
 }
 
+// generateSummaryDOM
+// Arguments: incompletedTodos
+// Return value: the summary element
 // Get the Summary DOM
 const generateSummaryDOM = (incompleteTodos) => {
     const summary = document.createElement('h2')
@@ -114,3 +91,6 @@ const generateSummaryDOM = (incompleteTodos) => {
 
     return summary
 }
+
+// Make sure to set up the exports
+export { generateTodoDOM, renderTodos, generateSummaryDOM }
